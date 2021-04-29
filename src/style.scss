@@ -1,0 +1,18 @@
+$blue: #027bff;
+$red: #c82332;
+
+.myButton {
+  background-color: $blue !important;
+
+  &:active {
+    background-color: $red !important;
+  }
+}
+
+.myRow {
+  border: none !important;
+}
+
+.myCard {
+  border: none !important;
+}

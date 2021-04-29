@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer } from "react"
+import { Container } from "reactstrap"
+// import { QueryClient, QueryClientProvider } from "react-query";
+import { initialCount, CountReducer, CountStore } from "./Reducers"
+import Main from "./Main"
+import { ButtonRow } from "./ButtonRow"
+import Navbar from "./Components/IndexNavbar"
 
-function App() {
+
+export const App = () => {
+  const [stateValue, dispatch] = useReducer(CountReducer, initialCount)
+
+  const value = { stateValue, dispatch }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <React.StrictMode>
+      <CountStore.Provider value={value}>
+        <Navbar />
+        <Container style={{ margin: "auto" }}>
+          <ButtonRow />
+          <Main />
+        </Container>
+      </CountStore.Provider>
+    </React.StrictMode>
+  )
 }
 
-export default App;
+export default App
+
